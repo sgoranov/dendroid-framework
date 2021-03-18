@@ -168,16 +168,15 @@ class Form extends ComponentContainer
 
                 $data = $_FILES[$name];
             } else {
-
-                // skip buttons
-                if ($component instanceof Component\Form\Button) {
-                    continue;
-                }
-
+                
                 // throw exception if data is not found
-                throw new \InvalidArgumentException(sprintf(
-                    'Unable to find the data for %s element. The form may contains a file 
-                    element but enctype="multipart/form-data" attribute is missing', $name));
+                // but skip if the component is "optional"
+                if (!$component->isOptional()) {
+
+                    throw new \InvalidArgumentException(sprintf(
+                        'Unable to find the data for %s element. The form may contains a file 
+                                element but enctype="multipart/form-data" attribute is missing', $name));
+                }
             }
 
             $result[$name] = $data;

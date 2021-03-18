@@ -3,6 +3,8 @@ namespace sgoranov\Dendroid\Component\Form;
 
 class Button extends Element
 {
+    protected $optional = true;
+
     protected $type = 'submit';
 
     public function __construct(string $name)

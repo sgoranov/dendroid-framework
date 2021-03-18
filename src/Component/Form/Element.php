@@ -13,6 +13,7 @@ abstract class Element extends Component implements ElementInterface
 
     protected $data = '';
     protected $submittedData;
+    protected $optional = false;
 
     protected $errors = [];
     protected $validator;
@@ -118,5 +119,21 @@ abstract class Element extends Component implements ElementInterface
     protected function getDataToRender()
     {
         return $this->getData();
+    }
+
+    /**
+     * @return bool
+     */
+    public function isOptional(): bool
+    {
+        return $this->optional;
+    }
+
+    /**
+     * @param bool $optional
+     */
+    public function setOptional(bool $optional): void
+    {
+        $this->optional = $optional;
     }
 }
